@@ -4,6 +4,10 @@ apply {
     plugin "kotlin-android-extensions"
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+sdkdir = properties.getProperty("sdk.dir")
+
 android {
     compileSdkVersion Config.compileSdkVersion
     defaultConfig {
@@ -11,6 +15,7 @@ android {
         versionCode Config.versionCode
         versionName Config.versionName
         consumerProguardFiles 'proguard-rules.pro'
+        println("sym :: :: "+sdkdir)
     }
 
     buildTypes {
